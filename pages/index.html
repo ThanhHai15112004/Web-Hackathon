@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shoes Stores</title>
     <link rel="stylesheet" href="/assets/styles/headerCss.css">
+    <link rel="stylesheet" href="/assets/styles/SlideCss.css">
+    <link rel="stylesheet" href="/assets/styles/ContentCss.css">
     <link rel="stylesheet" href="/assets/icons/themify-icons/themify-icons.css">
 </head>
 <body> 
+    <!--Banner Slider-->
     <header class="header_Components">
         <div class="header_container">
             <div class="subnav_container">
@@ -33,12 +36,37 @@
             
                 <div class="mainnav_search-box">
                     <input type="text" placeholder="Find...">
-                    <button><a href="#"><i class="ti-search"></i></a></button>
+                    <button type="submit"><i class="ti-search"></i></button>
                 </div>
+                
             </div>
         </div>
     </header>
 
-
+    <!--Banner Slider-->
+    <div class="banner_slider_Selection">
+        <div class="banner_container">
+            <div class="banner_slide">
+                <img src="/assets/images/AJ1_Black_Toe_-_EN_-_Primary_Desktop-Small.webp" alt="Banner 1">
+                <img src="/assets/images/Kobe_6_Protro_Sail_All_Star_-_EN_-_Primary_Desktop-Small.webp" alt="Banner 2">
+                <img src="/assets/images/Top_Nike_Apparel_-_EN_-_Primary_Desktop-Small.webp" alt="Banner 3">
+            </div>
+        </div>
+    </div>
+    
+    <!--Content Recommend For You-->
+    <div class="content_recommed-for-you_selection">
+        <div class="content_container">
+            <div class="content_header-section">
+                <h2>Recommended For You <span class="info-icon">?</span></h2>
+                <a href="#" id="see-all-btn" class="see-all">See All →</a>
+            </div>
+            <div class="content_product-list" id="content_product-list"></div>
+        </div>
+        
+    </div>
+    
+    <script src="/scripts/sliderScripts.js"></script>
+    <script src="/scripts/ContentScripts.js"></script>
 </body>
 </html>

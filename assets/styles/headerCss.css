@@ -5,12 +5,15 @@
     font-family: Arial, sans-serif;
 }
 
+/* Header Index */
 /*subnav*/
 .header_Components {
-    margin: 0 100px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-/* Subnav Container */
+
 .subnav_container {
     display: flex;
     justify-content: space-between;
@@ -20,18 +23,16 @@
     position: relative;
 }
 
-/* Tạo đường kẻ dưới subnav */
 .subnav_container::after {
     content: "";
     position: absolute;
-    left: -100px;
+    left: -200px;
     bottom: 0;
-    width: calc(100% + 200px);
+    width: calc(100% + 700px);
     height: .75px;
     background: #C0C0C0;
 }
 
-/* Logo */
 .subnav_logo {
     font-size: 18px;
     font-weight: bold;
@@ -39,7 +40,6 @@
     color: black;
 }
 
-/* Icon và nút */
 .subnav-icons {
     display: flex;
     align-items: center;
@@ -52,7 +52,6 @@
     padding: 8px 12px;
 }
 
-/* Button */
 .btn {
     padding: 5px 10px;
     border: 2px solid black;
@@ -67,15 +66,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 0;
+    padding: 8px 0;
     position: relative;
+    margin-left: 100px;
 }
 
-/* Menu Links */
 .mainnav-links {
     list-style: none;
     display: flex;
-    gap: 50px;
+    gap: 40px;
     padding: 0;
     margin: 0;
 }
@@ -89,11 +88,10 @@
     font-weight: bold;
     color: black;
     font-size: 16px;
-    padding: 8px 16px;
+    padding: 6px 12px;
     display: inline-block;
 }
 
-/* Gạch dưới động */
 .mainnav-links a::after {
     content: "";
     position: absolute;
@@ -105,17 +103,14 @@
     transition: width 0.3s ease-in-out;
 }
 
-/* Hover: hiển thị gạch dưới */
 .mainnav-links a:hover::after {
     width: 100%;
 }
 
-/* Active: hiển thị gạch dưới */
 .mainnav-links a.active::after {
     width: 100%;
 }
 
-/* Search Box */
 .mainnav_search-box {
     display: flex;
     align-items: center;
@@ -146,9 +141,9 @@
 .mainnav::after {
     content: "";
     position: absolute;
-    left: -100px;
+    left: -300px;
     bottom: 0;
-    width: calc(100% + 200px);
+    width: calc(100% + 600px);
     height: 1px;
     background: #C0C0C0;
 }
