@@ -26,9 +26,9 @@
 .subnav_container::after {
     content: "";
     position: absolute;
-    left: -200px;
+    left: -300px;
     bottom: 0;
-    width: calc(100% + 700px);
+    width: calc(120% + 230px);
     height: .75px;
     background: #C0C0C0;
 }
@@ -143,7 +143,7 @@
     position: absolute;
     left: -300px;
     bottom: 0;
-    width: calc(100% + 600px);
+    width: calc(120% + 250px);
     height: 1px;
     background: #C0C0C0;
 }

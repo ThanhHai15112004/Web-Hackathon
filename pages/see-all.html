@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shoes Stores</title>
+    <title>See All Products</title>
     <link rel="stylesheet" href="../assets/styles/headerCss.css">
     <link rel="stylesheet" href="../assets/styles/SlideCss.css">
     <link rel="stylesheet" href="../assets/styles/ContentCss.css">
@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="../assets/icons/themify-icons/themify-icons.css">
 </head>
-<body> 
+<body>
     <!--Banner Slider-->
     <header class="header_Components">
         <div class="header_container">
@@ -46,30 +46,17 @@
         </div>
     </header>
 
-    <!--Banner Slider-->
-    <div class="banner_slider_Selection">
-        <div class="banner_container">
-            <div class="banner_slide">
-                <img src="../assets/images/AJ1_Black_Toe_-_EN_-_Primary_Desktop-Small.webp" alt="Banner 1">
-                <img src="../assets/images/Kobe_6_Protro_Sail_All_Star_-_EN_-_Primary_Desktop-Small.webp" alt="Banner 2">
-                <img src="../assets/images/Top_Nike_Apparel_-_EN_-_Primary_Desktop-Small.webp" alt="Banner 3">
-            </div>
-        </div>
-    </div>
-    
-    <!--Content Recommend For You-->
+     <!--Content Recommend For You-->
     <div class="content_recommed-for-you_selection">
         <div class="content_container">
             <div class="content_header-section">
-                <h2>Recommended For You <span class="info-icon">?</span></h2>
-                <a href="see-all.html" id="see-all-btn" class="see-all">See All →</a>
+                <h2>All Products Recommended For You</h2>
+                <a href="index.html" class="back-btn">← Back</a>
             </div>
             <div class="content_product-list" id="content_product-list"></div>
+            <div id="pagination" class="pagination"></div>
         </div>
-        
     </div>
-
-
 
     <!-- Footer -->
     <footer class="footer">
@@ -78,11 +65,11 @@
                 <div class="col-md-6">
                     <div class="contact-info">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span>TP.HCM, Vietnam</span>
+                        <span><b>TP.HCM, Vietnam</b></span>
                     </div>
                     <div class="contact-info">
                         <i class="fas fa-envelope"></i>
-                        <span>support@gmail.com</span>
+                        <span><b>support@gmail.com</b></span>
                     </div>
                     <div class="social-icons">
                         <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/LinkedIn_icon.svg/1024px-LinkedIn_icon.svg.png" alt="LinkedIn" class="custom-icon"></a>
@@ -105,8 +92,7 @@
             </div>
         </div>
     </footer>
-    
-    <script src="../scripts/sliderScripts.js"></script>
-    <script src="../scripts/ContentScripts.js"></script>
+
+    <script src="../scripts/SeeAllScripts.js"></script>
 </body>
 </html>

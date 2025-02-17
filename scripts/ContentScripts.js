@@ -4,24 +4,26 @@ document.addEventListener("DOMContentLoaded", async () => {
     const productList = document.getElementById("content_product-list");
     const seeAllBtn = document.getElementById("see-all-btn");
 
+    if (!seeAllBtn) {
+        console.error("❌ Error: see-all-btn not found in DOM!");
+        return;
+    }
+
     try {
         const response = await fetch(API_URL);
-        const products = await response.json();
+        const allProducts = await response.json();
 
-        renderProducts(products.slice(0, 5)); // Hiển thị 5 sản phẩm đầu tiên
+        console.log("✅ Fetched Products:", allProducts);
 
-        if (products.length > 5) {
-            seeAllBtn.style.display = "inline"; // Hiển thị nút See All
-            seeAllBtn.addEventListener("click", () => {
-                renderProducts(products); // Hiển thị tất cả sản phẩm
-                seeAllBtn.style.display = "none"; // Ẩn nút sau khi nhấn
-            });
-        }
+        // Hiển thị 5 sản phẩm đầu tiên trên trang chính
+        renderProducts(allProducts.slice(0, 5));
+        
     } catch (error) {
-        console.error("Error fetching products:", error);
+        console.error("❌ Fetch error:", error);
     }
 });
 
+// Hiển thị danh sách 5 sản phẩm trên `index.html`
 function renderProducts(products) {
     const productList = document.getElementById("content_product-list");
     productList.innerHTML = ""; // Xóa danh sách cũ
@@ -35,10 +37,12 @@ function renderProducts(products) {
             <div class="image-container">
                 <img src="${product.image}" alt="${product.name}">
             </div>
-            <p class="title-product">${product.name}</p>
+            <p class="title-product">${product.name}</p> 
             <div class="price">$${product.price}</div>
         `;
 
         productList.appendChild(productCard);
     });
+
+    console.log(`✅ Rendered ${products.length} products.`);
 }
