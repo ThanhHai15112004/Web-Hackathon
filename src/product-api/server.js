@@ -1,12 +1,15 @@
 const express = require("express");
 const cors = require("cors");
+const bodyParser = require("body-parser");
 const { sql, poolPromise } = require("./db");
+const authRoutes = require("./auth");
 
 const app = express();
 app.use(cors());
-app.use(express.json());
+app.use(bodyParser.json());
 
-const PORT = process.env.PORT || 5000;
+// 🟢 API Người Dùng (Đăng ký, Đăng nhập, Cập nhật user)
+app.use("/api/auth", authRoutes);
 
 // 🟢 API Lấy danh sách sản phẩm
 app.get("/api/products", async (req, res) => {
@@ -98,6 +101,7 @@ app.put("/api/products/:id", async (req, res) => {
 });
 
 // 🚀 Khởi chạy server
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`✅ Server is running on http://localhost:${PORT}`);
 });

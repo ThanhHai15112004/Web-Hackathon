@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="../assets/styles/login.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+Chettan&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="form-box">
+        <div class="tabs">
+          <a href="signup.html"><button>Sign Up</button></a>
+          <button class="active">Log In</button>
+        </div>
+        <h2>Log In</h2>
+        <form id="login-form">
+          <input
+            type="text"
+            id="first-name"
+            placeholder="Email*"
+            required
+          />
+          <input
+            type="password"
+            id="password"
+            placeholder="Password*"
+            required
+          />
+          <a href="#" class="forgot-password">Forgot Password?</a>
+          <button type="submit" class="btn">Log In</button>
+        </form>
+        <p class="terms">
+          By logging in, you agree to the
+          <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
+        </p>
+
+        <div class="or-separator">Or</div>
+
+        <div class="social-login">
+          <button class="google">
+            <img
+              src="https://www.gstatic.com/images/branding/googleg/1x/googleg_standard_color_128dp.png"
+              alt="Google Logo"
+            />
+          </button>
+          <button class="facebook">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png"
+              alt="Facebook Logo"
+            />
+          </button>
+        </div>
+
+        <p class="signup-link">Need an account? <a href="#">Sign Up</a></p>
+      </div>
+    </div>
+    <script src="../scripts/login.js"></script>
+  </body>
+</html>

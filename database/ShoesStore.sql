@@ -1,5 +1,7 @@
 create database ShoesStore
 go
+use database ShoesStore
+go
 CREATE TABLE Products (
     id INT IDENTITY(1,1) PRIMARY KEY,
     name NVARCHAR(255) NOT NULL,
@@ -15,3 +17,18 @@ VALUES
     ('SP006', 'Nike Kobe 8 Protro Court Purple', null, 141, 'https://images.stockx.com/360/Nike-Kobe-8-Protro-Court-Purple/Images/Nike-Kobe-8-Protro-Court-Purple/Lv2/img01.jpg?w=576&q=57&dpr=2&updated_at=1706801069&h=384'),
     ('SP007', 'Nike Kobe 8 Protro Radiant Emerald', null, 139, 'https://images.stockx.com/360/Nike-Kobe-8-Protro-Radiant-Emerald/Images/Nike-Kobe-8-Protro-Radiant-Emerald/Lv2/img01.jpg?w=576&q=57&dpr=2&updated_at=1707924145&h=384'),
     ('SP008', 'Jordan 4 Retro White Cement (2025)', null, 399, 'https://images.stockx.com/images/Air-Jordan-4-Retro-White-Cement-2025.jpg?fit=fill&bg=FFFFFF&w=576&h=384&q=60&dpr=1&trim=color&updated_at=1739765985');
+
+
+go
+CREATE TABLE users (
+    id VARCHAR(50) PRIMARY KEY,
+    first_name NVARCHAR(255) NOT NULL,
+    last_name NVARCHAR(255) NOT NULL,
+    email NVARCHAR(255) UNIQUE NOT NULL,
+    password NVARCHAR(255) NOT NULL,
+    phone NVARCHAR(20) NULL,
+    wallet_address NVARCHAR(255) NULL,
+    created_at DATETIME DEFAULT GETDATE()
+);
+
+

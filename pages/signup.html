@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="../assets/styles/signup.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+Chettan&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="form-box">
+        <div class="tabs">
+          <button class="active">Sign Up</button>
+          <a href="login.html"><button>Log In</button></a>
+        </div>
+        <h2>Sign Up</h2>
+        <form id="signup-form">
+          <input
+            type="text"
+            id="first-name"
+            placeholder="First Name*"
+            required
+          />
+          <input type="text" id="last-name" placeholder="Last Name*" required />
+          <input
+            type="email"
+            id="email"
+            placeholder="Email Address*"
+            required
+          />
+          <input
+            type="password"
+            id="password"
+            placeholder="Password*"
+            required
+          />
+
+          <p class="password-requirements">
+            At least 8 characters, 1 uppercase letter, 1 number & 1 symbol
+          </p>
+
+          <div class="terms-container">
+            <input type="checkbox" id="terms" required />
+            <label for="terms">
+              I have read and agree to the
+              <a href="#">Terms and Conditions</a> and
+              <a href="#">Privacy Policy</a>.
+            </label>
+          </div>
+
+          <button type="submit" class="btn">Sign Up</button>
+        </form>
+
+        <div class="or-separator">Or</div>
+
+        <div class="social-login">
+          <button class="google">
+            <img
+              src="https://www.gstatic.com/images/branding/googleg/1x/googleg_standard_color_128dp.png"
+              alt="Google Logo"
+            />
+          </button>
+          <button class="facebook">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png"
+              alt="Facebook Logo"
+            />
+          </button>
+        </div>
+
+        <p class="login-link">
+          Already have an account? <a href="#">Log In</a>
+        </p>
+      </div>
+    </div>
+    <!-- Thông báo đăng ký thành công -->
+    <div id="success-message" class="message-box" style="display: none">
+      <p>Đăng ký thành công! Bạn sẽ được chuyển đến trang đăng nhập.</p>
+      <button onclick="closeMessage()">Đóng</button>
+    </div>
+
+    <script src="../scripts/signup.js"></script>
+  </body>
+</html>
