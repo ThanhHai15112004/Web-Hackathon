@@ -15,7 +15,7 @@ function updateUserUI() {
             <div class="user-menu">
                 <i class="ti-user" id="user-icon"></i>
                 <div class="user-dropdown" id="user-dropdown">
-                    <a href="profile.html"><i class="ti-user"></i> Profile</a>
+                    <a href="../pages/user.html"><i class="ti-user"></i> Profile</a>
                     <a href="buying.html"><i class="ti-shopping-cart"></i> Buying</a>
                     <a href="selling.html"><i class="ti-money"></i> Selling</a>
                     <a href="favorites.html"><i class="ti-heart"></i> Favorites</a>

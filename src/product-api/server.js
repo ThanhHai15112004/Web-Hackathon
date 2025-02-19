@@ -3,6 +3,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const { sql, poolPromise } = require("./db");
 const authRoutes = require("./auth");
+const walletRoutes = require("./wallet");
 
 const app = express();
 app.use(cors());
@@ -99,6 +100,11 @@ app.put("/api/products/:id", async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
+
+
+app.use("/api/auth", authRoutes);
+app.use("/api/wallet", walletRoutes);
+
 
 // 🚀 Khởi chạy server
 const PORT = process.env.PORT || 5000;

@@ -1,0 +1,123 @@
+.usercontainer {
+    display: flex;
+}
+.sidebar {
+    background-color: #333333;
+    height: 418px;
+    top: 120px;
+    left: 2px;
+    padding-top: 20px;
+    width: 253px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.sidebar h5{
+    color: white;
+}
+.sidebar a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 15px 15px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    text-align: center;
+}
+.sidebar a:hover {
+    background-color: #444444;
+}
+
+.sidebar .active {
+    background-color: #444444;
+}
+
+.content {
+    background-color: #1c1c1c;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    flex: 1;
+    color: white;
+}
+.content {
+    box-sizing: border-box;
+    max-height: 418px;
+    overflow: auto;
+    margin: 0 auto;
+  }     
+
+.content h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.section-title {
+    width: 889px;
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ffffff;
+    padding-bottom: 5px;
+    color: white;
+}
+
+.info-table {
+    margin-top: 20px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.info-table td {
+    padding: 10px;
+    color: white;
+    margin-bottom: 10px; /* Tạo khoảng cách giữa các ô trong bảng */
+}
+
+.edit-button {
+    width: 67px;
+    height: 35px;
+    top: 178px;
+    left: 1211px;
+    color: #fff;
+    background-color: #50010100;
+    border-radius: 10px;
+    border: 1.5px solid #ffffff;
+  }
+  .edit-button:hover {
+    background-color: #333;
+    border-color: #fff; 
+    cursor: pointer; 
+  }
+  .add-button {
+    width: 101px;
+    height: 38px;
+    top: 175px;
+    left: 1177px;
+    color: #fff;
+    background-color: #50010100;
+    border-radius: 10px;
+    border: 1.5px solid #ffffff;
+  }
+
+  .add-button:hover {
+    background-color: #333;
+    border-color: #fff; 
+    cursor: pointer; 
+  }
+
+  .wallet-info {
+    background-color: #2c2c2c;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+    font-size: 16px;
+    color: #fff;
+}
+
+.wallet-info p {
+    margin: 5px 0;
+    line-height: 1.6;
+}
+

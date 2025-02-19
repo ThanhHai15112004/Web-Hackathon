@@ -99,7 +99,7 @@ router.get("/me", async (req, res) => {
 // 🟢 API Cập Nhật User
 router.put("/update", async (req, res) => {
     try {
-        const { email, phone, wallet_address } = req.body;
+        const { first_name, last_name, email, phone, password } = req.body;
         const token = req.headers.authorization?.split(" ")[1];
 
         if (!token) return res.status(401).json({ error: "Không có quyền truy cập!" });
@@ -107,17 +107,61 @@ router.put("/update", async (req, res) => {
         const decoded = jwt.verify(token, SECRET_KEY);
         const pool = await poolPromise;
 
-        await pool.request()
+        // 🟢 Kiểm tra nếu không có first_name hoặc last_name, giữ nguyên giá trị cũ
+        const user = await pool.request()
             .input("id", sql.VarChar, decoded.id)
-            .input("email", sql.NVarChar, email)
-            .input("phone", sql.NVarChar, phone)
-            .input("wallet_address", sql.NVarChar, wallet_address)
-            .query("UPDATE users SET email=@email, phone=@phone, wallet_address=@wallet_address WHERE id=@id");
+            .query("SELECT first_name, last_name, email, phone FROM users WHERE id = @id");
 
-        res.json({ message: "Cập nhật thành công!" });
+        if (user.recordset.length === 0) {
+            return res.status(404).json({ error: "User không tồn tại!" });
+        }
+
+        const currentUser = user.recordset[0];
+
+        const newFirstName = first_name || currentUser.first_name;
+        const newLastName = last_name || currentUser.last_name;
+        const newEmail = email || currentUser.email;
+        const newPhone = phone || currentUser.phone;
+
+        // 🟢 Kiểm tra nếu có password mới, mã hóa trước khi lưu
+        let hashedPassword = null;
+        if (password && password.trim() !== "") {
+            hashedPassword = await bcrypt.hash(password, 10);
+        }
+
+        // 🟢 Câu lệnh SQL: cập nhật các giá trị mới (nếu có)
+        let updateQuery = `
+            UPDATE users 
+            SET first_name=@first_name, last_name=@last_name, email=@email, phone=@phone
+            ${hashedPassword ? ", password=@password" : ""}
+            WHERE id=@id
+        `;
+
+        const updateRequest = pool.request()
+            .input("id", sql.VarChar, decoded.id)
+            .input("first_name", sql.NVarChar, newFirstName)
+            .input("last_name", sql.NVarChar, newLastName)
+            .input("email", sql.NVarChar, newEmail)
+            .input("phone", sql.NVarChar, newPhone);
+
+        if (hashedPassword) {
+            updateRequest.input("password", sql.NVarChar, hashedPassword);
+        }
+
+        await updateRequest.query(updateQuery);
+
+        // 🟢 Trả về user đã cập nhật
+        const updatedUser = await pool.request()
+            .input("id", sql.VarChar, decoded.id)
+            .query("SELECT id, first_name, last_name, email, phone FROM users WHERE id = @id");
+
+        res.json({ message: "Cập nhật thành công!", user: updatedUser.recordset[0] });
+
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 });
+
+
 
 module.exports = router;

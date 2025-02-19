@@ -1,4 +1,4 @@
-create database ShoesStore
+﻿create database ShoesStore
 go
 use database ShoesStore
 go
@@ -30,5 +30,107 @@ CREATE TABLE users (
     wallet_address NVARCHAR(255) NULL,
     created_at DATETIME DEFAULT GETDATE()
 );
+go
+ALTER TABLE users 
+ADD wallet_balance DECIMAL(18,8) DEFAULT 0; -- Lưu số dư token trong tài khoản
+go
+
+ALTER TABLE Wallets 
+ADD wallet_balance DECIMAL(18,8) DEFAULT 0;
+
+go
+CREATE TABLE Wallets (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    user_id VARCHAR(50) NOT NULL,
+    wallet_address NVARCHAR(255) UNIQUE NOT NULL,
+    created_at DATETIME DEFAULT GETDATE(),
+    FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE
+);
+go
+CREATE TABLE Orders (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    user_id VARCHAR(50) NOT NULL,
+    total_price DECIMAL(10,2) NOT NULL,
+    status NVARCHAR(50) DEFAULT 'Pending', -- 'Pending', 'Paid', 'Shipped', 'Completed'
+    created_at DATETIME DEFAULT GETDATE(),
+    FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE
+);
+go
+CREATE TABLE OrderDetails (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    order_id INT NOT NULL,
+    product_id varchar(100) NOT NULL,  -- 🔹 Đảm bảo kiểu dữ liệu là INT
+    quantity INT NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (order_id) REFERENCES Orders(id) ON DELETE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES Products(id) ON DELETE CASCADE
+);
+
+go
+CREATE TABLE Transactions (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    user_id VARCHAR(50) NOT NULL,
+    wallet_id INT NOT NULL,
+    transaction_type NVARCHAR(50) NOT NULL CHECK (transaction_type IN ('Deposit', 'Withdraw')),
+    amount DECIMAL(18, 8) NOT NULL,
+    status NVARCHAR(50) DEFAULT 'Pending',
+    created_at DATETIME DEFAULT GETDATE(),
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (wallet_id) REFERENCES Wallets(id)
+);
+
+go
+ALTER TABLE Orders ADD 
+    payment_status NVARCHAR(50) DEFAULT 'Pending',
+    payment_method NVARCHAR(50) DEFAULT 'Wallet';
+
+go
+
+CREATE TABLE Invoices (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    user_id VARCHAR(50) NOT NULL,
+    order_id INT NOT NULL,
+    total_amount DECIMAL(18,8) NOT NULL,
+    status NVARCHAR(50) DEFAULT 'Pending', -- Pending, Paid, Failed
+    created_at DATETIME DEFAULT GETDATE(),
+    FOREIGN KEY (user_id) REFERENCES Users(id),
+    FOREIGN KEY (order_id) REFERENCES Orders(id)
+);
+
+go
+
+ALTER TABLE Transactions 
+ADD order_id INT NULL,
+    FOREIGN KEY (order_id) REFERENCES Orders(id);
+
+ALTER TABLE Transactions 
+ADD CONSTRAINT CHK_TransactionType 
+CHECK (transaction_type IN ('Deposit', 'Withdraw', 'Payment'));
 
 
+go
+
+CREATE TABLE Payments (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    invoice_id INT NOT NULL,
+    wallet_id INT NOT NULL,
+    amount DECIMAL(18,8) NOT NULL,
+    payment_status NVARCHAR(50) DEFAULT 'Processing', -- Processing, Completed, Failed
+    created_at DATETIME DEFAULT GETDATE(),
+    FOREIGN KEY (invoice_id) REFERENCES Invoices(id) ON DELETE CASCADE,
+    FOREIGN KEY (wallet_id) REFERENCES Wallets(id) ON DELETE CASCADE
+);
+
+
+go
+
+CREATE TRIGGER SyncWalletBalance
+ON Wallets
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    UPDATE users
+    SET wallet_balance = inserted.wallet_balance
+    FROM users
+    INNER JOIN inserted ON users.id = inserted.user_id;
+END;
